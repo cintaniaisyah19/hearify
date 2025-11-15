@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hearify 🎙️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #2d3436, #000000);
+      color: #f1f1f1;
+      text-align: center;
+      min-height: 100vh;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #1db954;
+      margin-bottom: 10px;
+    }
+
+    form {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(8px);
+    }
+
+    input[type=text] {
+      width: 60%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    button {
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: .3s;
+    }
+
+    #mic-btn {
+      background:#1db954;
+      color:white;
+    }
+
+    button[type=submit] {
+      background:#333;
+      color:white;
+    }
+
+    .results {
+      margin-top: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    li {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 12px;
+      margin: 10px 0;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      margin-right:15px;
+    }
+
+    .song-info {
+      display:flex;
+      align-items:center;
+      flex:1;
+    }
+
+    audio {
+      margin-left: 20px;
+    }
+
+    footer {
+      margin-top:50px;
+      color:#bbb;
+      font-size:14px;
+      text-align:center;
+      border-top:1px solid #444;
+      padding-top:20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎧 Hearify</h1>
+  <p>Cari lagu dari lirik atau suara 🎙️</p>
+
+  <form method="POST">
+    <input type="text" id="lyrics" name="lyrics" placeholder="Ketik atau ucapkan lirik..." required>
+    <button type="button" id="mic-btn">🎙️</button>
+    <button type="submit">Cari Lagu</button>
+  </form>
+
+  {% if recognized_text %}
+  <p><strong>Hasil suara:</strong> {{ recognized_text }}</p>
+  {% endif %}
+
+  <div class="results">
+    {% if results %}
+      <h2>Hasil Pencarian</h2>
+      <ul>
+      {% for r in results %}
+        <li>
+          <div class="song-info">
+            {% if r.album_cover %}
+            <img src="{{ r.album_cover }}">
+            {% endif %}
+            <div>
+              <b>{{ r.title }}</b><br>
+              <span>{{ r.artist }}</span>
+            </div>
+          </div>
+
+          {% if r.preview %}
+            <audio controls>
+              <source src="{{ r.preview }}" type="audio/mpeg">
+            </audio>
+          {% endif %}
+
+          <a href="{{ r.url }}" target="_blank" style="color:#1db954;font-weight:bold;">Open Spotify</a>
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p style="text-align:center; color:#aaa;">Tidak ada hasil ditemukan.</p>
+    {% endif %}
+  </div>
+
+  <footer>
+    <p>Dibuat oleh <strong>Cintani Aisyah</strong> • 23051130004 • Teknologi Informasi</p>
+    <p>© 2025 Hearify</p>
+  </footer>
+
+  <script>
+    const micBtn = document.getElementById("mic-btn");
+    const input = document.getElementById("lyrics");
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.lang = "id-ID";
+
+      micBtn.addEventListener("click", () => {
+        recognition.start();
+        micBtn.textContent = "🎧 Mendengarkan...";
+      });
+
+      recognition.onresult = (event) => {
+        input.value = event.results[0][0].transcript;
+        micBtn.textContent = "🎙️";
+      };
+
+      recognition.onerror = () => {
+        micBtn.textContent = "🎙️ (Coba lagi)";
+      };
+    }
+  </script>
+</body>
+</html>
