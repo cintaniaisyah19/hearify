@@ -2,87 +2,93 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hearify 🎙️</title>
-
   <!-- Hubungkan ke file CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <div class="container">
+    <div class="header">
+      <h1>🎧 Hearify</h1>
+      <p class="subtitle">Cari lagu dari lirik atau suara 🎙️</p>
+    </div>
 
-  <h1>🎧 Hearify</h1>
-  <p>Cari lagu dari lirik atau suara 🎙️</p>
+    <form method="POST">
+      <input type="text" id="lyrics" name="lyrics" placeholder="Ketik atau ucapkan lirik..." required>
+      <button type="button" id="mic-btn">🎙️ Mic</button>
+      <button type="submit">Cari Lagu</button>
+    </form>
 
-  <form method="POST">
-    <input type="text" id="lyrics" name="lyrics" placeholder="Ketik atau ucapkan lirik..." required>
-    <button type="button" id="mic-btn">🎙️</button>
-    <button type="submit">Cari Lagu</button>
-  </form>
+    {% if recognized_text %}
+    <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(29, 185, 84, 0.1); border-radius: 15px; border: 1px solid rgba(29, 185, 84, 0.3);">
+      <strong style="color: #1db954;">Hasil suara:</strong> {{ recognized_text }}
+    </div>
+    {% endif %}
 
-  {% if recognized_text %}
-  <p><strong>Hasil suara:</strong> {{ recognized_text }}</p>
-  {% endif %}
-
-  <div class="results">
-    {% if results %}
-      <h2>Hasil Pencarian</h2>
-      <ul>
-      {% for r in results %}
-        <li>
-          <div class="song-info">
-            {% if r.album_cover %}
-            <img src="{{ r.album_cover }}">
-            {% endif %}
-            <div>
-              <b>{{ r.title }}</b><br>
-              <span>{{ r.artist }}</span>
+    <div class="results">
+      {% if results %}
+        <h2>Hasil Pencarian</h2>
+        <div class="results-grid">
+        {% for r in results %}
+          <div class="song-item">
+            <div class="song-info">
+              {% if r.album_cover %}
+              <img src="{{ r.album_cover }}" alt="{{ r.title }}">
+              {% endif %}
+              <div class="song-details">
+                <h3>{{ r.title }}</h3>
+                <p>{{ r.artist }}</p>
+              </div>
+            </div>
+            <div class="song-actions">
+              {% if r.preview %}
+                <audio controls>
+                  <source src="{{ r.preview }}" type="audio/mpeg">
+                </audio>
+              {% endif %}
+              <a href="{{ r.url }}" target="_blank" class="spotify-btn">Open Spotify</a>
             </div>
           </div>
+        {% endfor %}
+        </div>
+      {% else %}
+        <p class="no-results">Tidak ada hasil ditemukan.</p>
+      {% endif %}
+    </div>
 
-          {% if r.preview %}
-            <audio controls>
-              <source src="{{ r.preview }}" type="audio/mpeg">
-            </audio>
-          {% endif %}
-
-          <a href="{{ r.url }}" target="_blank" class="spotify-btn">Open Spotify</a>
-        </li>
-      {% endfor %}
-      </ul>
-    {% else %}
-      <p class="no-result">Tidak ada hasil ditemukan.</p>
-    {% endif %}
+    <footer>
+      <p>Dibuat oleh <strong>Cintani Aisyah</strong> • 23051130004 • Teknologi Informasi</p>
+      <p>© 2025 Hearify</p>
+    </footer>
   </div>
-
-  <footer>
-    <p>Dibuat oleh <strong>Cintani Aisyah</strong> • 23051130004 • Teknologi Informasi</p>
-    <p>© 2025 Hearify</p>
-  </footer>
 
   <script>
     const micBtn = document.getElementById("mic-btn");
     const input = document.getElementById("lyrics");
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
     if (SpeechRecognition) {
       const recognition = new SpeechRecognition();
       recognition.lang = "id-ID";
-
       micBtn.addEventListener("click", () => {
         recognition.start();
         micBtn.textContent = "🎧 Mendengarkan...";
       });
-
       recognition.onresult = (event) => {
         input.value = event.results[0][0].transcript;
-        micBtn.textContent = "🎙️";
+        micBtn.textContent = "🎙️ Mic";
       };
-
       recognition.onerror = () => {
-        micBtn.textContent = "🎙️ (Coba lagi)";
+        micBtn.textContent = "🎙️ Coba lagi";
       };
+      recognition.onend = () => {
+        micBtn.textContent = "🎙️ Mic";
+      };
+    } else {
+      micBtn.disabled = true;
+      micBtn.textContent = "🎙️ Tidak Didukung";
     }
   </script>
-
 </body>
 </html>
