@@ -12,7 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 20px 15px;
   position: relative;
   overflow-x: hidden;
 }
@@ -35,13 +35,13 @@ body::before {
   z-index: 1;
   width: 100%;
   max-width: 1200px;
-  padding: 40px 20px;
+  padding: 20px 10px;
 }
 
 /* ---------- HEADER ---------- */
 .header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   animation: fadeInDown 0.8s ease;
 }
 
@@ -57,39 +57,43 @@ body::before {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 700;
   background: linear-gradient(135deg, #1db954, #1ed760);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
   text-shadow: 0 0 30px rgba(29, 185, 84, 0.3);
 }
 
 .subtitle {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #b3b3b3;
   font-weight: 300;
+  line-height: 1.5;
 }
 
 /* ---------- FORM ---------- */
 form {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   justify-content: center;
+  align-items: stretch;
   flex-wrap: wrap;
   background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
+  padding: 25px 20px;
   border-radius: 25px;
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: fadeInUp 0.8s ease 0.2s both;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 @keyframes fadeInUp {
@@ -105,13 +109,14 @@ form {
 
 input[type="text"] {
   flex: 1;
-  min-width: 280px;
-  padding: 16px 24px;
+  min-width: 200px;
+  width: 100%;
+  padding: 16px 20px;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   font-family: inherit;
   transition: all 0.3s ease;
   outline: none;
@@ -125,20 +130,27 @@ input[type="text"]:focus {
   border-color: #1db954;
   background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 0 20px rgba(29, 185, 84, 0.2);
-  transform: translateY(-2px);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
 }
 
 button {
-  padding: 16px 32px;
+  flex: 1;
+  padding: 16px 24px;
   border-radius: 50px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   font-family: inherit;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 button::before {
@@ -154,7 +166,7 @@ button::before {
   transition: width 0.6s, height 0.6s;
 }
 
-button:hover::before {
+button:active::before {
   width: 300px;
   height: 300px;
 }
@@ -162,16 +174,15 @@ button:hover::before {
 #mic-btn {
   background: linear-gradient(135deg, #1db954, #1ed760);
   color: white;
-  box-shadow: 0 10px 30px rgba(29, 185, 84, 0.3);
-}
-
-#mic-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(29, 185, 84, 0.4);
+  box-shadow: 0 8px 25px rgba(29, 185, 84, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 #mic-btn:active {
-  transform: translateY(-1px);
+  transform: scale(0.95);
 }
 
 button[type="submit"] {
@@ -180,17 +191,41 @@ button[type="submit"] {
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:active {
   background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+}
+
+/* ---------- HASIL SUARA ---------- */
+.voice-result {
+  text-align: center;
+  margin-top: 20px;
+  padding: 18px;
+  background: rgba(29, 185, 84, 0.1);
+  border: 1px solid rgba(29, 185, 84, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.5s ease;
+}
+
+.voice-result p {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.voice-result strong {
+  color: #1db954;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 /* ---------- RESULTS ---------- */
 .results {
-  margin-top: 60px;
+  margin-top: 50px;
   animation: fadeIn 0.8s ease 0.4s both;
+  width: 100%;
 }
 
 @keyframes fadeIn {
@@ -204,26 +239,26 @@ button[type="submit"]:hover {
 
 .results h2 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
   color: #1db954;
 }
 
 .no-results {
   text-align: center;
   color: #888;
-  font-size: 1.1rem;
-  padding: 40px;
+  font-size: 1rem;
+  padding: 30px 20px;
 }
 
 .song-item {
   background: rgba(255, 255, 255, 0.05);
-  padding: 20px;
+  padding: 18px;
   border-radius: 20px;
-  margin: 15px 0;
+  margin: 12px 0;
   display: flex;
-  align-items: center;
-  gap: 20px;
+  flex-direction: column;
+  gap: 15px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
@@ -241,88 +276,88 @@ button[type="submit"]:hover {
   }
 }
 
-.song-item:hover {
+.song-item:active {
   background: rgba(255, 255, 255, 0.08);
-  transform: translateX(10px);
   border-color: rgba(29, 185, 84, 0.3);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .song-info {
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex: 1;
+  gap: 15px;
+  width: 100%;
 }
 
 .song-info img {
-  width: 80px;
-  height: 80px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease;
-}
-
-.song-item:hover .song-info img {
-  transform: scale(1.05) rotate(2deg);
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
 }
 
 .song-details {
   flex: 1;
+  min-width: 0;
 }
 
 .song-details h3 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin-bottom: 5px;
   color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .song-details p {
   color: #b3b3b3;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .song-actions {
   display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
 }
 
 audio {
+  width: 100%;
   height: 40px;
   border-radius: 20px;
 }
 
-audio::-webkit-media-controls-panel {
-  background: rgba(255, 255, 255, 0.1);
-}
-
 .spotify-btn {
-  padding: 10px 24px;
+  padding: 12px 20px;
   background: linear-gradient(135deg, #1db954, #1ed760);
   color: white;
   text-decoration: none;
   border-radius: 25px;
   font-weight: 600;
   transition: all 0.3s ease;
-  display: inline-block;
+  display: block;
+  text-align: center;
   box-shadow: 0 5px 15px rgba(29, 185, 84, 0.3);
 }
 
-.spotify-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(29, 185, 84, 0.4);
+.spotify-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 10px rgba(29, 185, 84, 0.4);
 }
 
 /* ---------- FOOTER ---------- */
 footer {
-  margin-top: 80px;
+  margin-top: 60px;
   text-align: center;
   color: #888;
-  font-size: 0.95rem;
-  padding: 20px;
+  font-size: 0.85rem;
+  padding: 20px 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  line-height: 1.6;
 }
 
 footer a {
@@ -331,64 +366,101 @@ footer a {
   font-weight: 600;
 }
 
-footer a:hover {
-  text-decoration: underline;
-}
-
 /* ---------- RESPONSIVE ---------- */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
   }
 
   .subtitle {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
 
   form {
-    padding: 20px;
+    padding: 35px 30px;
+    flex-wrap: nowrap;
   }
 
   input[type="text"] {
-    width: 100%;
-    min-width: auto;
+    min-width: 300px;
+    padding: 18px 26px;
+    font-size: 16px;
   }
 
-  .song-item {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .song-info {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .song-actions {
-    justify-content: center;
-    width: 100%;
-  }
-
-  audio {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  form {
-    padding: 15px;
+  .button-group {
+    width: auto;
   }
 
   button {
-    width: 100%;
+    flex: initial;
+    padding: 18px 32px;
+    font-size: 16px;
+  }
+
+  #mic-btn {
+    min-width: 60px;
+  }
+
+  .song-item {
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .song-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(10px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .song-info {
+    flex: 1;
   }
 
   .song-info img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .song-details h3 {
+    font-size: 1.3rem;
+  }
+
+  .song-details p {
+    font-size: 0.95rem;
+  }
+
+  .song-actions {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+  }
+
+  audio {
+    width: 250px;
+  }
+
+  .spotify-btn {
+    padding: 10px 24px;
+    width: auto;
+  }
+}
+
+@media (max-width: 374px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  form {
+    padding: 20px 15px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 14px 20px;
   }
 }
