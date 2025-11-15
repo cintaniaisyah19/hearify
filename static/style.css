@@ -12,7 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px;
   position: relative;
   overflow-x: hidden;
 }
@@ -35,13 +35,13 @@ body::before {
   z-index: 1;
   width: 100%;
   max-width: 1200px;
-  padding: 40px 20px;
+  padding: 0 20px;
 }
 
 /* ---------- HEADER ---------- */
 .header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   animation: fadeInDown 0.8s ease;
 }
 
@@ -63,7 +63,7 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,21 +75,23 @@ h1 {
   font-size: 1.3rem;
   color: #b3b3b3;
   font-weight: 300;
+  line-height: 1.6;
 }
 
 /* ---------- FORM ---------- */
 form {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
   background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border-radius: 25px;
+  padding: 40px;
+  border-radius: 30px;
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: fadeInUp 0.8s ease 0.2s both;
+  margin-bottom: 20px;
 }
 
 @keyframes fadeInUp {
@@ -105,8 +107,8 @@ form {
 
 input[type="text"] {
   flex: 1;
-  min-width: 280px;
-  padding: 16px 24px;
+  min-width: 300px;
+  padding: 18px 28px;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.08);
@@ -129,7 +131,7 @@ input[type="text"]:focus {
 }
 
 button {
-  padding: 16px 32px;
+  padding: 18px 36px;
   border-radius: 50px;
   border: none;
   cursor: pointer;
@@ -189,7 +191,7 @@ button[type="submit"]:hover {
 
 /* ---------- RESULTS ---------- */
 .results {
-  margin-top: 60px;
+  margin-top: 80px;
   animation: fadeIn 0.8s ease 0.4s both;
 }
 
@@ -204,26 +206,27 @@ button[type="submit"]:hover {
 
 .results h2 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
+  margin-bottom: 50px;
+  font-size: 2.2rem;
   color: #1db954;
+  font-weight: 600;
 }
 
 .no-results {
   text-align: center;
   color: #888;
   font-size: 1.1rem;
-  padding: 40px;
+  padding: 60px 20px;
 }
 
 .song-item {
   background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border-radius: 20px;
-  margin: 25px 0;
+  padding: 35px;
+  border-radius: 25px;
+  margin: 30px 0;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 35px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
@@ -251,16 +254,17 @@ button[type="submit"]:hover {
 .song-info {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   flex: 1;
 }
 
 .song-info img {
-  width: 80px;
-  height: 80px;
+  width: 110px;
+  height: 110px;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .song-item:hover .song-info img {
@@ -269,45 +273,53 @@ button[type="submit"]:hover {
 
 .song-details {
   flex: 1;
+  min-width: 0;
 }
 
 .song-details h3 {
-  font-size: 1.3rem;
-  margin-bottom: 5px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
   color: #fff;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 .song-details p {
   color: #b3b3b3;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
 .song-actions {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
 audio {
-  height: 40px;
-  border-radius: 20px;
+  height: 45px;
+  border-radius: 25px;
+  min-width: 250px;
 }
 
 audio::-webkit-media-controls-panel {
   background: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
 }
 
 .spotify-btn {
-  padding: 10px 24px;
+  padding: 12px 28px;
   background: linear-gradient(135deg, #1db954, #1ed760);
   color: white;
   text-decoration: none;
-  border-radius: 25px;
+  border-radius: 30px;
   font-weight: 600;
+  font-size: 15px;
   transition: all 0.3s ease;
   display: inline-block;
   box-shadow: 0 5px 15px rgba(29, 185, 84, 0.3);
+  white-space: nowrap;
 }
 
 .spotify-btn:hover {
@@ -317,11 +329,11 @@ audio::-webkit-media-controls-panel {
 
 /* ---------- FOOTER ---------- */
 footer {
-  margin-top: 80px;
+  margin-top: 100px;
   text-align: center;
   color: #888;
   font-size: 0.95rem;
-  padding: 20px;
+  padding: 30px 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -329,24 +341,35 @@ footer a {
   color: #1db954;
   text-decoration: none;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 footer a:hover {
+  color: #1ed760;
   text-decoration: underline;
 }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
+  body {
+    padding: 30px 15px;
+  }
+
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 
   .subtitle {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+  }
+
+  .header {
+    margin-bottom: 50px;
   }
 
   form {
-    padding: 20px;
+    padding: 30px 25px;
+    gap: 15px;
   }
 
   input[type="text"] {
@@ -354,41 +377,103 @@ footer a:hover {
     min-width: auto;
   }
 
+  .results {
+    margin-top: 60px;
+  }
+
+  .results h2 {
+    margin-bottom: 35px;
+    font-size: 1.8rem;
+  }
+
   .song-item {
     flex-direction: column;
     text-align: center;
+    padding: 30px 25px;
+    gap: 25px;
+    margin: 20px 0;
   }
 
   .song-info {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
+  }
+
+  .song-info img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .song-details h3 {
+    font-size: 1.3rem;
+  }
+
+  .song-details p {
+    font-size: 1rem;
   }
 
   .song-actions {
     justify-content: center;
     width: 100%;
+    gap: 15px;
   }
 
   audio {
     width: 100%;
+    min-width: auto;
+  }
+
+  footer {
+    margin-top: 70px;
   }
 }
 
 @media (max-width: 480px) {
+  body {
+    padding: 20px 10px;
+  }
+
   h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .header {
+    margin-bottom: 40px;
   }
 
   form {
-    padding: 15px;
+    padding: 25px 20px;
   }
 
   button {
     width: 100%;
+    padding: 16px 28px;
+  }
+
+  .song-item {
+    padding: 25px 20px;
   }
 
   .song-info img {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .song-details h3 {
+    font-size: 1.2rem;
+  }
+
+  .song-details p {
+    font-size: 0.95rem;
+  }
+
+  .spotify-btn {
+    width: 100%;
+    text-align: center;
   }
 }
